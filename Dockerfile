@@ -10,5 +10,6 @@ WORKDIR /root/models/tutorials/image/imagenet
 RUN npm init -f
 RUN npm install n -g && n stable
 RUN npm install --save express express-fileupload ansi-to-html
-RUN git clone https://github.com/ramnathnayakpr/oci-nvidia-docker-gpu-tensorflow-demo
+COPY callpy.js /root/models/tutorials/image/imagenet
+COPY background.jpg /root/models/tutorials/image/imagenet
 CMD node callpy.js
