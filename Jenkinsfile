@@ -6,7 +6,10 @@ pipeline {
             steps {
                 echo 'Building the container'
                 sleep 10
-            }        }
+                sh pwd
+                sh ls
+            }        
+        }
         stage('Test') {
             steps {
                 echo 'Placeholder for testing code'
