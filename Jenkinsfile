@@ -4,22 +4,22 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo Building the container
+                echo 'Building the container'
             }
         }
         stage('Test') {
             steps {
-                echo Placeholder for testing code
+                echo 'Placeholder for testing code'
             }
         }
         stage('Push to registry') {
             steps {
-                echo Push to registry
+                echo 'Push to registry'
             }
         }
         stage('Deplay to environment') {
             steps {
-                echo Deploy to env
+                echo 'Deploy to env'
             }
         }
     }
