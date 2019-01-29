@@ -1,18 +1,26 @@
 pipeline {
-    agents any {}
+    agent any {}
 
     stages {
         stage('Build') {
-            // Build the container
+            steps {
+                // Build the container
+            }
         }
         stage('Test') {
-            // Placeholder for testing code
+            steps {
+                // Placeholder for testing code
+            }
         }
         stage('Push to registry') {
-            // Push to registry
+            steps {
+                // Push to registry
+            }
         }
         stage('Deplay to environment') {
-            // Deploy build to env
+            steps {
+                // Deploy to env
+            }
         }
     }
 }
