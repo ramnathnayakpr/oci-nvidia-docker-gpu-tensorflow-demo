@@ -5,9 +5,7 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the container'
-                sleep 10
-                sh 'pwd'
-                sh 'ls'
+                sh 'docker image build . -t oci-nvidia-docker-gpu-tensorflow-demo:latest'
             }        
         }
         stage('Test') {
