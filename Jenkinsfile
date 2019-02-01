@@ -6,8 +6,8 @@ pipeline {
             steps {
                 echo 'Building the container'
                 sleep 10
-                sh pwd
-                sh ls
+                sh 'pwd'
+                sh 'ls'
             }        
         }
         stage('Test') {
