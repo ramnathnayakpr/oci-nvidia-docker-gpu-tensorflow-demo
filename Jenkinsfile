@@ -14,6 +14,13 @@ pipeline {
                 sleep 10
             }
         }
+        stage('Login to registry') {
+            steps {
+                withCredentials([string(credentialsId: 'OCI_AUTH_TOKEN', variable: 'OCI_AUTH_TOKEN')]) {
+                    sh "docker login lhr.ocir.io -u intrnayak/ramnath.nayak@oracle.com -p $OCI_AUTH_TOKEN"
+                }
+            }
+        }
         stage('Push to registry') {
             steps {
                 echo 'Push to registry'
