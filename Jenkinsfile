@@ -12,12 +12,13 @@ pipeline {
         stage('Build') {
             steps {
                 echo 'Building the container'
-                sh 'docker image build . -t lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:latest'
+                sh 'docker build . -t lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:$COMMIT_ID'
             }        
         }
         stage('Push to registry') {
             steps {
-                sh 'docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:$BUILD_NUMBER'
+                sh 'docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:$COMMIT_ID'
+                sh 'docker tag lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:$COMMIT_ID lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:latest'
                 sh 'docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:latest'
             }
         }
