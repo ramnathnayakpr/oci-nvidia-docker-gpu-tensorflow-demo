@@ -27,7 +27,7 @@ pipeline {
                 sleep 10
             }
         }
-        stage('Deplay to environment') {
+        stage('Deploy to environment') {
             steps {
                 echo 'Deploy to env'
                 sleep 10
