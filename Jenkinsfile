@@ -2,18 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
-            steps {
-                echo 'Building the container'
-                sh 'docker image build . -t oci-nvidia-docker-gpu-tensorflow-demo:latest'
-            }        
-        }
-        stage('Test') {
-            steps {
-                echo 'Placeholder for testing code'
-                sleep 10
-            }
-        }
         stage('Login to registry') {
             steps {
                 withCredentials([string(credentialsId: 'OCI_AUTH_TOKEN', variable: 'OCI_AUTH_TOKEN')]) {
@@ -21,16 +9,16 @@ pipeline {
                 }
             }
         }
+        stage('Build') {
+            steps {
+                echo 'Building the container'
+                sh 'docker image build . -t lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:latest'
+            }        
+        }
         stage('Push to registry') {
             steps {
-                echo 'Push to registry'
-                sleep 10
-            }
-        }
-        stage('Deploy to environment') {
-            steps {
-                echo 'Deploy to env'
-                sleep 10
+                sh 'docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:$BUILD_NUMBER'
+                sh 'docker push lhr.ocir.io/intrnayak/oci-nvidia-docker-gpu-tensorflow-demo:latest'
             }
         }
     }
